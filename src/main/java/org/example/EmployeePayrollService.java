@@ -44,7 +44,7 @@ public class EmployeePayrollService {
         double salary=consoleInputReader.nextDouble();
         employeePayrollList.add(new EmployeePayroll(id,name,salary));
     }
-    //UC4
+    //UC
     // Write employee data to file
     public void writeEmployeeData(List<EmployeePayroll> employeeList) throws IOException {
 
