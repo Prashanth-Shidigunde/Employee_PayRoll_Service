@@ -58,6 +58,7 @@ public class EmployeePayrollService {
 
         System.out.println("Employee Payroll Written Successfully.");
     }
+    //UC 4 PRINT number of entries
     public long countEntries() throws IOException {
 
         Path path = Path.of(PAYROLL_FILE);

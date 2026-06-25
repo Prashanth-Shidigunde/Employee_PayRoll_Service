@@ -48,4 +48,16 @@ public class EmployeePayrollServiceTest {
 
             Assertions.assertEquals(3, entries);
         }
+    @Test
+    public void givenEmployeePayrollFile_WhenCounted_ShouldReturnThreeEntries()
+            throws IOException {
+
+        EmployeePayrollService service = new EmployeePayrollService();
+
+        long entries = service.countEntries();
+
+        System.out.println("Number of Entries : " + entries);
+
+        Assertions.assertEquals(3, entries);
+    }
 }
