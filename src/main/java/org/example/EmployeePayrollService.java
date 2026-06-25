@@ -75,5 +75,24 @@ public class EmployeePayrollService {
         Files.lines(path)
                 .forEach(System.out::println);
     }
+    //UC6
+    public List<EmployeePayroll> readEmployeePayrollData() throws IOException {
+
+        Path path = Path.of(PAYROLL_FILE);
+
+        return Files.lines(path)
+                .map(line -> {
+
+                    String[] data = line.split(",");
+
+                    int id = Integer.parseInt(data[0]);
+                    String name = data[1];
+                    double salary = Double.parseDouble(data[2]);
+
+                    return new EmployeePayroll(id, name, salary);
+
+                }).toList();
+    }
+
 
 }

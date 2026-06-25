@@ -60,4 +60,27 @@ public class EmployeePayrollServiceTest {
 
         Assertions.assertEquals(3, entries);
     }
-}
+    @Test
+    public void givenEmployeePayrollFile_WhenRead_ShouldReturnThreeEmployees() throws IOException {
+
+        EmployeePayrollService service = new EmployeePayrollService();
+
+        List<EmployeePayroll> employeeList = List.of(
+                new EmployeePayroll(101, "Prashanth", 50000),
+                new EmployeePayroll(102, "Rahul", 60000),
+                new EmployeePayroll(103, "Anjali", 70000)
+        );
+
+        // First create the file
+        service.writeEmployeeData(employeeList);
+
+        // Then read it
+        List<EmployeePayroll> result = service.readEmployeePayrollData();
+
+        // Print data
+        result.forEach(System.out::println);
+
+        // Verify
+        Assertions.assertEquals(3, result.size());
+    }
+ }
