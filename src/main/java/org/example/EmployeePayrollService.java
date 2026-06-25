@@ -65,4 +65,14 @@ public class EmployeePayrollService {
         return Files.lines(path).count();
     }
 
+    //UC5
+    // Print Employee Payroll Data
+    public void printData() throws IOException {
+
+        Path path = Path.of(PAYROLL_FILE);
+
+        Files.lines(path)
+                .forEach(System.out::println);
+    }
+
 }
