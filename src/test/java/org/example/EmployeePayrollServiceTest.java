@@ -1,0 +1,37 @@
+package org.example;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
+public class EmployeePayrollServiceTest {
+
+    @Test
+    public void given3Employees_WhenWrittenToFile_ShouldReturn3Entries()
+            throws IOException {
+
+        EmployeePayroll emp1 =
+                new EmployeePayroll(101, "Prashanth", 50000);
+
+        EmployeePayroll emp2 =
+                new EmployeePayroll(102, "Rahul", 60000);
+
+        EmployeePayroll emp3 =
+                new EmployeePayroll(103, "Anjali", 70000);
+
+        List<EmployeePayroll> employees =
+                Arrays.asList(emp1, emp2, emp3);
+
+        EmployeePayrollService service =
+                new EmployeePayrollService();
+
+        service.writeEmployeeData(employees);
+
+        long entries = service.countEntries();
+
+        Assertions.assertEquals(3, entries);
+    }
+}
