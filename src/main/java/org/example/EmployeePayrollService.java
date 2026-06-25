@@ -1,8 +1,12 @@
 package org.example;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class EmployeePayrollService {
     public enum IOService{
@@ -10,6 +14,7 @@ public class EmployeePayrollService {
         DB_IO,
         REST_IO
     }
+    private static final String PAYROLL_FILE = "EmployeePayroll.txt";
     private List<EmployeePayroll> employeePayrollList;
 
     public EmployeePayrollService(){}
@@ -38,6 +43,26 @@ public class EmployeePayrollService {
         System.out.println("Enter salary of Employee");
         double salary=consoleInputReader.nextDouble();
         employeePayrollList.add(new EmployeePayroll(id,name,salary));
+    }
+    //UC4
+    // Write employee data to file
+    public void writeEmployeeData(List<EmployeePayroll> employeeList) throws IOException {
+
+        Path path = Path.of(PAYROLL_FILE);
+
+        List<String> employeeData = employeeList.stream()
+                .map(EmployeePayroll::toString)
+                .collect(Collectors.toList());
+
+        Files.write(path, employeeData);
+
+        System.out.println("Employee Payroll Written Successfully.");
+    }
+    public long countEntries() throws IOException {
+
+        Path path = Path.of(PAYROLL_FILE);
+
+        return Files.lines(path).count();
     }
 
 }
